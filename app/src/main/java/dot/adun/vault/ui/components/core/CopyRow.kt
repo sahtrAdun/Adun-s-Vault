@@ -1,12 +1,15 @@
 package dot.adun.vault.ui.components.core
 
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.MarqueeSpacing
+import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -19,10 +22,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.defaultShimmerTheme
@@ -36,6 +43,8 @@ import kotlinx.coroutines.launch
 fun CopyRow(
     value: String,
     background: Color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+    style: TextStyle = MaterialTheme.typography.bodyLarge,
+    height: Dp = 36.dp,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -48,6 +57,15 @@ fun CopyRow(
         mainShimmerColor.copy(alpha = 0.25f),
         mainShimmerColor
     ))
+    val dividerGradient = listOf(
+        background,
+        Color.Transparent,
+        Color.Transparent,
+        Color.Transparent,
+        Color.Transparent,
+        Color.Transparent,
+        background
+    )
     var valueCopied by remember { mutableStateOf(false) }
 
     if (valueCopied == true) {
@@ -61,29 +79,42 @@ fun CopyRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Box(modifier = Modifier
-            .height(36.dp)
+            .height(height)
             .weight(1f)
             .then(if(valueCopied) Modifier.shimmer(rememberShimmer(
                 shimmerBounds = ShimmerBounds.View,
                 theme = shimmerTheme
             )) else Modifier )
-            .surface(
+            .background(
                 color = background,
-                shape = RoundedCornerShape(8.dp),
-                innerPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)
-            ),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp)),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = value,
                 maxLines = 1,
-                style = MaterialTheme.typography.bodyLarge,
+                style = style,
                 color = MaterialTheme.colorScheme.outline,
-                modifier = Modifier.horizontalScroll(rememberScrollState())
+                modifier = Modifier
+                    //.horizontalScroll(rememberScrollState())
+                    .padding(horizontal = 10.dp, vertical = 4.dp)
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        animationMode = MarqueeAnimationMode.Immediately,
+                        repeatDelayMillis = 4000,
+                        spacing = MarqueeSpacing(50.dp)
+                    )
+            )
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .background(brush = Brush.horizontalGradient(colors = dividerGradient))
             )
         }
         IconBox(
-            size = 36.dp,
+            size = height,
             background = background,
             onClick = {
                 valueCopied = true

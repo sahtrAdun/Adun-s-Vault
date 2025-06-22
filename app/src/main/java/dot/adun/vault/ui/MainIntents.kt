@@ -19,7 +19,7 @@ class MainIntentsWrapper(
 ) {
     fun validateKey() = onIntent(MainIntents.ValidateKey)
     fun searchModeChange() = onIntent(MainIntents.SearchModeChange)
-    fun updateEmail(id: String) = onIntent(MainIntents.UpdateEmail(id))
+    fun editEmail(id: String) = onIntent(MainIntents.UpdateEmail(id))
     fun deleteEmail(id: String) = onIntent(MainIntents.DeleteEmail(id))
     fun addNewEmail(email: String) = onIntent(MainIntents.AddNewEmail(email))
     fun updateKeyText(key: String?) = onIntent(MainIntents.UpdateKeyText(key))

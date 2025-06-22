@@ -8,4 +8,17 @@
     <string name="item_new_site">Attach a new site</string>
     <string name="error_key">Enter a key first</string>
     <string name="error_key_invalid">Invalid key</string>
+    <string name="dialog_delete_email">You sure?</string>
+    <string name="dialog_edit_email">Input a new value</string>
+    <string name="dialog_button_ok">Ok</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="dialog_button_confirm">Confirm</string>
+    <string name="dialog_new_site_header">Input site data and password</string>
+    <string name="new_site_name">Name</string>
+    <string name="new_site_address">Address</string>
+    <string name="new_site_password">Password</string>
+    <string name="main_sites_list">List of attached sites</string>
+    <string name="b_edit">Edit</string>
+    <string name="b_history">History</string>
+    <string name="b_delete">Delete</string>
 </resources>

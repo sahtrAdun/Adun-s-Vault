@@ -28,15 +28,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
-import dot.adun.vault.R
 import dot.adun.vault.domain.entities.DecryptedEmail
 import dot.adun.vault.ui.MainIntentsWrapper
 import dot.adun.vault.ui.SnackMessage
-import dot.adun.vault.ui.SnackMessageType
 import dot.adun.vault.ui.components.core.LceContent
+import dot.adun.vault.ui.components.core.VSpacer
 import dot.adun.vault.ui.components.core.VaultDialogManager
 import dot.adun.vault.ui.components.core.VaultSnackbar
 import dot.adun.vault.ui.entities.DialogConfig
+import dot.adun.vault.ui.util.checkKey
 import kotlinx.serialization.json.Json
 
 @Composable
@@ -80,16 +80,11 @@ fun MainLayout(
                     shape = CircleShape,
                     modifier = Modifier.size(48.dp),
                     onClick = {
-                        if (isKeyValid) {
+                        context.checkKey(isKeyValid, intents) {
                             currentDialog = DialogConfig.NewEmail(
                                 modifier = Modifier,
                                 addEmail = intents::addNewEmail,
                                 onClose = { currentDialog = null }
-                            )
-                        } else {
-                            intents.emitSnackMessage(
-                                message = context.getString(R.string.error_key),
-                                type = SnackMessageType.Error
                             )
                         }
                     }
@@ -117,16 +112,50 @@ fun MainLayout(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(pd)
-                    .padding(15.dp),
+                    .padding(horizontal = 15.dp),
                 verticalArrangement = Arrangement.spacedBy(15.dp)
             ) {
+                item { VSpacer(10.dp) }
                 items(emails) { email ->
                     EmailItem(
                         email = email,
-                        editEmail = intents::updateEmail,
-                        deleteEmail = intents::deleteEmail
-                    ) { currentDialog = it }
+                        editEmail = { id ->
+                            context.checkKey(isKeyValid, intents) {
+                                currentDialog = DialogConfig.EditEmail(
+                                    email = email.email,
+                                    onCancel = { currentDialog = null },
+                                    onApprove = {
+                                        intents.editEmail(id)
+                                        currentDialog = null
+                                    }
+                                )
+                            }
+                        },
+                        deleteEmail = { id ->
+                            context.checkKey(isKeyValid, intents) {
+                                currentDialog = DialogConfig.DeleteEmail(
+                                    onCancel = { currentDialog = null },
+                                    onApprove = {
+                                        intents.deleteEmail(id)
+                                        currentDialog = null
+                                    }
+                                )
+                            }
+                        },
+                        addNewSite = {
+                            context.checkKey(isKeyValid, intents) {
+                                currentDialog = DialogConfig.NewSite(
+                                    onClose = { currentDialog = null },
+                                    addSite = { site ->
+                                        intents.addNewSiteTo(email.id, site)
+                                        currentDialog = null
+                                    }
+                                )
+                            }
+                        }
+                    )
                 }
+                item { VSpacer(50.dp) }
             }
         }
     }

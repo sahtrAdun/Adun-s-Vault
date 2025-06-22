@@ -35,9 +35,8 @@ class MainViewModel @Inject constructor(
     private val _state = MutableStateFlow(MainState())
     val state: StateFlow<MainState> = _state.asStateFlow()
 
-    private var currentKey: String? = null
-
     init {
+        //"●"
         viewModelScope.launch {
             dataRepository.getAllEmails().collect { emails ->
                 _state.update {
@@ -46,9 +45,6 @@ class MainViewModel @Inject constructor(
                         emails = emails,
                         actualEmails = emails.map { it.toDecrypted() }
                     )
-                }
-                if (!currentKey.isNullOrEmpty()) {
-                    decryptAllEmails(currentKey!!)
                 }
             }
         }
@@ -94,7 +90,6 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val cipher = dataStore.validationCipher.first()
             if (CryptoUtil.validateKey(key, cipher)) {
-                currentKey = key
                 decryptAllEmails(key)
                 _state.update {
                     it.copy(isKeyValid = true)
@@ -141,7 +136,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun addEncryptedSiteToEmail(emailId: String, site: DecryptedSite) {
-        val key = currentKey ?: run {
+        val key = _state.value.keyText ?: run {
             emitSnackMessage(
                 message = context.getString(R.string.error_key),
                 type = SnackMessageType.Error
@@ -165,7 +160,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun addEncryptedEmail(email: String) {
-        val key = currentKey ?: run {
+        val key = _state.value.keyText ?: run {
             emitSnackMessage(
                 message = context.getString(R.string.error_key),
                 type = SnackMessageType.Error

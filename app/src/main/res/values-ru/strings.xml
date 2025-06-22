@@ -5,6 +5,19 @@
     <string name="main_search_placeholder_key">Ввод ключа</string>
     <string name="dialog_new_email_header">Введите новую почту</string>
     <string name="item_new_site">Добавить новый сайт</string>
-    <string name="error_key">Сначало введите ключ</string>
+    <string name="error_key">Сначала введите ключ</string>
     <string name="error_key_invalid">Неверный ключ</string>
+    <string name="dialog_delete_email">Вы уверены?</string>
+    <string name="dialog_edit_email">Введите новое значение</string>
+    <string name="dialog_button_ok">Ок</string>
+    <string name="dialog_button_cancel">Отмена</string>
+    <string name="dialog_button_confirm">Подтвердить</string>
+    <string name="dialog_new_site_header">Введите данные сайта и пароль</string>
+    <string name="new_site_name">Имя</string>
+    <string name="new_site_address">Адрес</string>
+    <string name="new_site_password">Пароль</string>
+    <string name="main_sites_list">Список сайтов</string>
+    <string name="b_edit">Изменить</string>
+    <string name="b_history">История</string>
+    <string name="b_delete">Удалить</string>
 </resources>

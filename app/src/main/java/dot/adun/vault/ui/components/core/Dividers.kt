@@ -50,7 +50,7 @@ fun HDivider(
     Box(
         modifier = modifier
             .height(height)
-            .background(brush = Brush.verticalGradient(colors = colors ?: dividerGradient))
+            .background(brush = Brush.horizontalGradient(colors = colors ?: dividerGradient))
     )
 }
 
