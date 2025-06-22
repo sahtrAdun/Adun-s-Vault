@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">Adun\'s Vault</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="main_search_placeholder">Search</string>
+    <string name="first_launch_dialog_header">Generated encryption key</string>
+    <string name="main_search_placeholder_key">Key Input</string>
+    <string name="dialog_new_email_header">Enter a new email address</string>
+    <string name="item_new_site">Attach a new site</string>
+    <string name="error_key">Enter a key first</string>
+    <string name="error_key_invalid">Invalid key</string>
+</resources>

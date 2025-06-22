@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_search_placeholder">Поиск</string>
+    <string name="first_launch_dialog_header">Сгенерированный ключ шифрования</string>
+    <string name="main_search_placeholder_key">Ввод ключа</string>
+    <string name="dialog_new_email_header">Введите новую почту</string>
+    <string name="item_new_site">Добавить новый сайт</string>
+    <string name="error_key">Сначало введите ключ</string>
+    <string name="error_key_invalid">Неверный ключ</string>
+</resources>

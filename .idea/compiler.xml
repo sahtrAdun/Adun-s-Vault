@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="AdunsVault.shared" target="11" />
+      <module name="AdunsVault.shared.features.main.data" target="11" />
+      <module name="AdunsVault.shared.features.main.data.main" target="11" />
+      <module name="AdunsVault.shared.features.main.data.test" target="11" />
+      <module name="AdunsVault.shared.features.main.data1.main" target="11" />
+      <module name="AdunsVault.shared.features.main.data1.test" target="11" />
+      <module name="AdunsVault.shared.features.main.domain" target="11" />
+      <module name="AdunsVault.shared.features.main.domain.main" target="11" />
+      <module name="AdunsVault.shared.features.main.domain.test" target="11" />
+      <module name="AdunsVault.shared.features.main.domain1.main" target="11" />
+      <module name="AdunsVault.shared.features.main.domain1.test" target="11" />
+      <module name="AdunsVault.shared.features.main.routing" target="11" />
+      <module name="AdunsVault.shared.features.main.routing.main" target="11" />
+      <module name="AdunsVault.shared.features.main.routing.test" target="11" />
+      <module name="AdunsVault.shared.features.main.routing1.main" target="11" />
+      <module name="AdunsVault.shared.features.main.routing1.test" target="11" />
+      <module name="AdunsVault.shared.features.main.ui" target="11" />
+      <module name="AdunsVault.shared.features.main.ui.main" target="11" />
+      <module name="AdunsVault.shared.features.main.ui.test" target="11" />
+      <module name="AdunsVault.shared.features.main.ui1" target="11" />
+      <module name="AdunsVault.shared.features.main.ui1.main" target="11" />
+      <module name="AdunsVault.shared.features.main.ui1.test" target="11" />
+      <module name="AdunsVault.shared.main" target="11" />
+      <module name="AdunsVault.shared.test" target="11" />
+      <module name="AdunsVault.test1" target="11" />
+      <module name="AdunsVault.test1.main" target="11" />
+      <module name="AdunsVault.test1.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
